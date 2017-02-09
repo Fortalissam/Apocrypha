@@ -1,0 +1,30 @@
+{
+  "name": "Apocrypha",
+  "version": "1.0.0",
+  "description": "Logiciel de gestion interne pour l'organisation du GN Royaumes de Fortalissam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fortalissam/Apocrypha.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fortalissam/Apocrypha/issues"
+  },
+  "homepage": "https://github.com/Fortalissam/Apocrypha#readme",
+  "dependencies": {
+    "@blueprintjs/core": "^1.8.0",
+    "ejs": "^2.5.5",
+    "express": "^4.14.1",
+    "morgan": "^1.8.0",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^2.2.1"
+  }
+}
