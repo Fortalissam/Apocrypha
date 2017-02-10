@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export class navbar extends React.Component{
+class Navbar extends React.Component{
     constructor(props){
         super(props);
     }
@@ -15,3 +15,5 @@ export class navbar extends React.Component{
         );
     }
 }
+
+module.exports = Navbar;
