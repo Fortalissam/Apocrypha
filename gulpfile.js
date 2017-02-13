@@ -1,7 +1,8 @@
 "use strict";
 let gulp = require('gulp');
-let webpack = require('webpack-stream');
+let webpackStream = require('webpack-stream');
 let nodemon = require('gulp-nodemon');
+//let webpack2 = require("webpack");
 
 let webpackConfig = {
     devtool: "source-map",
@@ -24,19 +25,22 @@ let webpackConfig = {
     }
 };
 
-gulp.task('default', function(){
-    console.log('hello world');
-});
+let webpack2Config = {
+    devtool: "source-map",
+    output: {
+        filename: "app.js"
+    }
+};
 
 gulp.task("compile:client", function(){
     return gulp.src('./client/index.jsx')
-        .pipe(webpack(webpackConfig))
+        .pipe(webpackStream(webpackConfig))
         .pipe(gulp.dest('public/js/'));
 });
 
 gulp.task("watch:client", function(){
     return gulp.src('./client/index.jsx')
-        .pipe(webpack(Object.assign(webpackConfig, {watch:true})))
+        .pipe(webpackStream(Object.assign(webpackConfig, {watch:true})))
         .pipe(gulp.dest('public/js/'));
 });
 
