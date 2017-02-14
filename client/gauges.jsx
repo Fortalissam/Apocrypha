@@ -1,4 +1,5 @@
 var React = require("react");
+var Caroussel = require("./caroussel.jsx");
 
 class GaugesContainer extends React.Component{
     constructor (props){
@@ -9,6 +10,7 @@ class GaugesContainer extends React.Component{
         return (
             <div className="" style={{margin: "1em"}}>
                 <h1>Some content</h1>
+                <Caroussel/>
             </div>
         )
     }
