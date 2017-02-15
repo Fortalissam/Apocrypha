@@ -28,7 +28,7 @@ module.exports = function(app, passport){
     });
 
     app.get("/api/secure", isAuthenticated, function(req, res){
-        res.json({message: success})
+        res.json({message: "success"})
     });
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
