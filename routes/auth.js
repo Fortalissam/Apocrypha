@@ -22,6 +22,14 @@ module.exports = function(app, passport){
             res.render("secure.ejs");
         });
 
+    app.get("/logout", isLoggedIn, function(req, res){
+        req.logout();
+        res.redirect('/login');
+    });
+
+    app.get("/api/secure", isAuthenticated, function(req, res){
+        res.json({message: success})
+    });
     // route middleware to make sure a user is logged in
     function isLoggedIn(req, res, next) {
 
@@ -31,5 +39,12 @@ module.exports = function(app, passport){
 
         // if they aren't redirect them to the home page
         res.redirect('/login');
+    }
+
+    function isAuthenticated(req, res, next){
+        if (req.isAuthenticated()){
+            return next();
+        }
+        res.sendStatus(401);
     }
 };
