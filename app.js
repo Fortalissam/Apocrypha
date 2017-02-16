@@ -17,6 +17,7 @@ app.use(morgan("dev"));
 app.use(session({
     secret: "test"
 }));
+//app.disable('etag');
 
 require("./authentication/passportConfig.js")(passport);
 
