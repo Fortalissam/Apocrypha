@@ -1,7 +1,7 @@
 var React = require("react");
 var reactDom = require("react-dom");
 import {Button, Intent, } from "@blueprintjs/core";
-var Navbar = require("./navbar.jsx");
+import Navbar from './navbar.jsx'
 require("../node_modules/@blueprintjs/core/dist/blueprint.css");
 var Gauges = require("./gauges.jsx");
 require("promise-polyfill");
