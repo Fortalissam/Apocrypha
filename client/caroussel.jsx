@@ -2,13 +2,14 @@
 
 let React = require("react");
 import {Button, Intent} from "@blueprintjs/core"
+import {connect} from "react-redux"
 
 class Caroussel extends React.Component{
     constructor(props){
         super(props);
         this.state = {
             leftmost: 0
-        }
+        };
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -19,11 +20,25 @@ class Caroussel extends React.Component{
     render(){
         return(
             <div>
-                <h2>{this.state.leftmost}</h2>
-                <Button intent={Intent.PRIMARY} text="Hello carrousel" onClick={this.handleChange}/>
+                <h2>{this.props.leftmost}</h2>
+                <Button intent={Intent.PRIMARY} text="Hello carrousel" onClick={this.props.onCounterClick}/>
             </div>
         );
     }
 }
 
-module.exports = Caroussel;
+const mapStateToProps = (state) => {
+    return {
+        leftmost: state.counter.counter
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCounterClick : () => {
+            dispatch({type: 'increment'})
+        }
+    }
+};
+
+module.exports = connect(mapStateToProps,mapDispatchToProps)(Caroussel);

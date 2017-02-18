@@ -8,6 +8,9 @@ require("promise-polyfill");
 require("whatwg-fetch");
 import {Route, Router, browserHistory} from "react-router";
 var Login = require("./login.jsx");
+import {Provider} from 'react-redux'
+import store from "./redux"
+import {createStore} from 'redux'
 
 class Layout extends React.Component{
     constructor(props){
@@ -16,13 +19,12 @@ class Layout extends React.Component{
 
     render(){
         return(
-            <div>
-                <Navbar />
-                <div className="contentPadding">
-                    {this.props.children}
+                <div>
+                    <Navbar />
+                    <div className="contentPadding">
+                        {this.props.children}
+                    </div>
                 </div>
-
-            </div>
         )
     }
 }
@@ -32,20 +34,16 @@ class App extends React.Component {
         super(props);
     }
 
-    routes(){
-    return(
-        <Router history={browserHistory}>
-            <Route path="/" component={Layout}>
-                <Route path="/login" component={Login}/>
-                <Route path="/gauges" component={Gauges}/>
-            </Route>
-        </Router>
-    )
-}
-
     render(){
         return (
-            this.routes()
+            <Provider  store={createStore(store)}>
+                <Router history={browserHistory}>
+                    <Route path="/" component={Layout}>
+                        <Route path="/login" component={Login}/>
+                        <Route path="/gauges" component={Gauges}/>
+                    </Route>
+                </Router>
+            </Provider>
         )
     }
 }
