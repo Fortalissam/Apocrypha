@@ -29,7 +29,7 @@ class Caroussel extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        leftmost: state.counter.counter
+        leftmost: state.counter
     }
 };
 

@@ -7,6 +7,7 @@ var passport = require("passport");
 var session = require("express-session");
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
+var models = require("./models");
 
 var app = express();
 
@@ -28,4 +29,6 @@ require("./routes")(app, passport);
 
 app.set("view engine", "ejs");
 
-app.listen(8081);
+models.sequelize.sync().then(function(){
+    app.listen(8081);
+});

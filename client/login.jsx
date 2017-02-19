@@ -1,8 +1,9 @@
-var React = require("react");
+import React from 'react'
+import {connect} from 'react-redux'
 
 class Login extends React.Component{
     constructor(props){
-        super(props)
+        super(props);
 
         this.state = {
             username: "",
@@ -26,9 +27,10 @@ class Login extends React.Component{
             .then(function(payload){
                 if (payload.status >= 200 && payload.status < 300){
                     console.log(document.cookie);
-                    window.location.href = '/'
+                    this.props.toggleLogin();
+                    window.location.href = '/';
                 }
-            })
+            }.bind(this))
     }
 
     handleChange (event){
@@ -55,4 +57,10 @@ class Login extends React.Component{
     }
 }
 
-module.exports = Login;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        toggleLogin : ()=>{dispatch({type: 'login'})}
+    }
+};
+
+module.exports = connect(null, mapDispatchToProps)(Login);

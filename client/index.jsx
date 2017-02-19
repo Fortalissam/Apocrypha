@@ -6,11 +6,18 @@ require("../node_modules/@blueprintjs/core/dist/blueprint.css");
 var Gauges = require("./gauges.jsx");
 require("promise-polyfill");
 require("whatwg-fetch");
-import {Route, Router, browserHistory} from "react-router";
-var Login = require("./login.jsx");
+import {Route, Router, browserHistory} from "react-router"
+import Login from './login.jsx'
 import {Provider} from 'react-redux'
 import store from "./redux"
-import {createStore} from 'redux'
+import {compose, createStore} from 'redux'
+import persistState from 'redux-localstorage'
+
+const enhancer = compose(
+    persistState()
+);
+
+const finalStore = createStore(store,enhancer);
 
 class Layout extends React.Component{
     constructor(props){
@@ -34,9 +41,11 @@ class App extends React.Component {
         super(props);
     }
 
+
+
     render(){
         return (
-            <Provider  store={createStore(store)}>
+            <Provider  store={finalStore}>
                 <Router history={browserHistory}>
                     <Route path="/" component={Layout}>
                         <Route path="/login" component={Login}/>
