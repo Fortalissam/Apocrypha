@@ -12,6 +12,7 @@ import {Provider} from 'react-redux'
 import store from "./redux"
 import {compose, createStore} from 'redux'
 import persistState from 'redux-localstorage'
+import Signup from "./signup.jsx"
 
 const enhancer = compose(
     persistState()
@@ -50,6 +51,7 @@ class App extends React.Component {
                     <Route path="/" component={Layout}>
                         <Route path="/login" component={Login}/>
                         <Route path="/gauges" component={Gauges}/>
+                        <Route path="/signup" component={Signup}/>
                     </Route>
                 </Router>
             </Provider>
