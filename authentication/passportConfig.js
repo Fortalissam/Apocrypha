@@ -25,7 +25,7 @@ function init(passport){
             if (payload === null){
                 return done (null, false, {message: "Incorrect username"})
             }
-            if (payload.password === password){
+            if (payload.validatePassword(password)){
                 return done(null, payload)
             } else {
                 return done(null, false, {message: "Incorrect password"})

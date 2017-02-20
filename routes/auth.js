@@ -26,9 +26,14 @@ module.exports = function(app, passport){
     });
 
     app.post("/api/signup", function(req, res){
-        var tocreate = req.body;
+        var tocreate = {
+          username: req.body.username,
+          password: req.body.password
+        };
 
-        models.Users.create(tocreate).then(function(payload){res.sendStatus(200)})
+        models.Users.create(tocreate).then(function(payload){
+            res.sendStatus(200)
+        })
     });
 
     // route middleware to make sure a user is logged in
