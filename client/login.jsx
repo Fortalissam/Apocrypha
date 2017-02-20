@@ -15,6 +15,7 @@ class Login extends React.Component{
     }
 
     login(event){
+        event.preventDefault();
         fetch("./api/login",
             {
                 headers: {
@@ -43,15 +44,17 @@ class Login extends React.Component{
     render(){
         return(
             <div>
-                <label className="pt-label">
-                    Username
-                    <input name="username" className="pt-input" type="text" value={this.state.username} onChange={this.handleChange}/>
-                </label>
-                <label className="pt-label">
-                    Password
-                    <input name="password" className="pt-input" type="password" value={this.state.password} onChange={this.handleChange}/>
-                </label>
-                <button className="pt-button pt-intent-primary" onClick={this.login}>Login</button>
+                <form onSubmit={this.login}>
+                    <label className="pt-label">
+                        Username
+                        <input name="username" className="pt-input" type="text" value={this.state.username} onChange={this.handleChange}/>
+                    </label>
+                    <label className="pt-label">
+                        Password
+                        <input name="password" className="pt-input" type="password" value={this.state.password} onChange={this.handleChange}/>
+                    </label>
+                    <button type="submit" className="pt-button pt-intent-primary">Login</button>
+                </form>
             </div>
         )
     }
