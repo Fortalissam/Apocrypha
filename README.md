@@ -1,7 +1,7 @@
 # Apocrypha
 Logiciel de gestion interne pour l'organisation du GN Royaumes de Fortalissam
 
-Développé avec Node JS, Express, React et Blueprint JS
+Développé avec Node JS, Express, React, Redux et Blueprint JS
 
 ## Installation (développement)
 1. Assurez-vous d'avoir installé Node JS et NPM
