@@ -1,0 +1,21 @@
+<html>
+<body>
+<h1>
+    This is a secure page.
+</h1>
+
+<script>
+    function myButton(){
+        fetch("./api/secure",{credentials: 'include'})
+            .then(function(response){
+                alert("success!");
+            },
+            function(error){
+                alert("error!" + error);
+            })
+    }
+</script>
+
+<button onclick="myButton()">Ajax!</button>
+</body>
+</html>
