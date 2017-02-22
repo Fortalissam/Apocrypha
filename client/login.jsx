@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
+import {ActionTypes} from "./redux/constants.js"
 
 class Login extends React.Component{
     constructor(props){
@@ -29,7 +30,8 @@ class Login extends React.Component{
             .then(function(payload){
                 if (payload.status >= 200 && payload.status < 300){
                     this.props.toggleLogin();
-                    window.location.href = '/';
+                    //window.location.href = '/';
+                    this.context.router.push("/");
                 }
             }.bind(this))
     }
@@ -61,9 +63,13 @@ class Login extends React.Component{
     }
 }
 
+Login.contextTypes = {
+    router: React.PropTypes.object
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        toggleLogin : ()=>{dispatch({type: 'login'})}
+        toggleLogin : ()=>{dispatch({type: ActionTypes.auth.LOGIN})}
     }
 };
 
