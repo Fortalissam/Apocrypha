@@ -28,7 +28,6 @@ class Login extends React.Component{
             })
             .then(function(payload){
                 if (payload.status >= 200 && payload.status < 300){
-                    console.log(document.cookie);
                     this.props.toggleLogin();
                     window.location.href = '/';
                 }

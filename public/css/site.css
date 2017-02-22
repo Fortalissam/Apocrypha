@@ -1,6 +1,11 @@
 .contentPadding {
     padding: 2em 20% 0 20%;
+    height: 100vh;
 }
+
+/*.pt-dark > .contentPadding{
+    background-color: #394B59;
+}*/
 
 #mainNavbar {
     padding: 0 20% 0 20%;

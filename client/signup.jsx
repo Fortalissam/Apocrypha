@@ -15,7 +15,24 @@ class Signup extends React.Component {
     }
 
     signup(event){
+        event.preventDefault();
 
+        fetch("./api/signup",
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify(this.state),
+                credentials: 'include'
+            })
+            .then(function(payload){
+                if (payload.status >= 200 && payload.status < 300){
+                    console.log(document.cookie);
+                    this.props.toggleLogin();
+                    window.location.href = '/';
+                }
+            }.bind(this))
     }
 
     handleChange(event){
@@ -41,6 +58,7 @@ class Signup extends React.Component {
                         Password confirmation
                         <input name="passwordConfirmation" className="pt-input" type="text" value={this.state.passwordConfirmation} onChange={this.handleChange}/>
                     </label>
+                    <button type="submit" className="pt-button pt-intent-primary">Submit</button>
                 </form>
             </div>
         )

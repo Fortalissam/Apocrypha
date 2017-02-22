@@ -1,7 +1,7 @@
 var React = require("react");
 var reactDom = require("react-dom");
 import {Button, Intent, } from "@blueprintjs/core";
-import Navbar from './navbar.jsx'
+
 require("../node_modules/@blueprintjs/core/dist/blueprint.css");
 var Gauges = require("./gauges.jsx");
 require("promise-polyfill");
@@ -13,36 +13,18 @@ import store from "./redux"
 import {compose, createStore} from 'redux'
 import persistState from 'redux-localstorage'
 import Signup from "./signup.jsx"
+import Layout from "./layout.jsx"
 
 const enhancer = compose(
     persistState()
 );
 
-const finalStore = createStore(store,enhancer);
-
-class Layout extends React.Component{
-    constructor(props){
-        super(props);
-    }
-
-    render(){
-        return(
-                <div>
-                    <Navbar />
-                    <div className="contentPadding">
-                        {this.props.children}
-                    </div>
-                </div>
-        )
-    }
-}
+const finalStore = createStore(store,/*,enhancer*/ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 class App extends React.Component {
     constructor(props) {
         super(props);
     }
-
-
 
     render(){
         return (

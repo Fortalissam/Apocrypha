@@ -1,6 +1,7 @@
 import * as React from "react"
 import {Link} from "react-router"
 import {connect} from "react-redux"
+import {ActionTypes} from "./redux/constants.js"
 
 class Navbar extends React.Component{
     constructor(props){
@@ -56,6 +57,8 @@ class Navbar extends React.Component{
                     <Link to="/gauges"><button className="pt-button pt-minimal">Gauges</button></Link>
                     <span className="pt-navbar-divider"></span>
                     {loginOrLogout(this.props.loggedIn)}
+                    <span className="pt-navbar-divider" ></span>
+                    <button className="pt-button pt-minimal pt-icon-moon" onClick={this.props.toggleTheme}/>
                 </div>
             </nav>
         );
@@ -64,14 +67,18 @@ class Navbar extends React.Component{
 
 const MapStateToProps = function(state){
     return {
-        loggedIn : state.auth.loggedIn
+        loggedIn : state.auth.loggedIn,
+        dark: state.settings.dark
     }
 };
 
 const MapDispatchToProps = function(dispatch){
     return {
         logoutUser: () => {
-            dispatch({type: 'logout'})
+            dispatch({type: ActionTypes.auth.LOGOUT})
+        },
+        toggleTheme: () =>{
+            dispatch({type: ActionTypes.settings.TOGGLE_THEME})
         }
     }
 };
