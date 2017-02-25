@@ -11,10 +11,13 @@ var models = require("./models");
 
 var app = express();
 
+app.set("view engine", "ejs");
+
 app.use('/static', express.static('public'));
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 app.use(morgan("dev"));
+
 app.use(session({
     secret: "test"
 }));
@@ -25,9 +28,8 @@ require("./authentication/passportConfig.js")(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes")(app, passport);
+app.use('/', require("./routes/index")(passport));
 
-app.set("view engine", "ejs");
 
 models.sequelize.sync().then(function(){
     app.listen(8081);
