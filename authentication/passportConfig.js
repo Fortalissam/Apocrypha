@@ -5,17 +5,12 @@ var LocalStrategy = require("passport-local").Strategy;
 var models = require("../models");
 
 function init(passport){
-    const nonUser = {
-        username: "test",
-        password: "test"
-    };
-
     passport.serializeUser(function(user, done){
         done(null, user.username);
     });
 
     passport.deserializeUser(function(id, done){
-        done(null, nonUser);
+        done(null, models.Users.findOne({where: {id: id}}));
     });
 
     passport.use('local-login', new LocalStrategy(function(username, password, done){

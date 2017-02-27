@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {ActionTypes} from "./redux/constants.js"
+import {ApoToaster} from "./toaster.js"
+import {Intent} from "@blueprintjs/core"
 
 class Login extends React.Component{
     constructor(props){
@@ -9,7 +11,8 @@ class Login extends React.Component{
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            loginFailed: false
         };
 
         this.login = this.login.bind(this);
@@ -30,8 +33,10 @@ class Login extends React.Component{
             .then(function(payload){
                 if (payload.status >= 200 && payload.status < 300){
                     this.props.toggleLogin();
-                    //window.location.href = '/';
+                    ApoToaster.show({message: "Logged in!", intent: Intent.SUCCESS})
                     this.context.router.push("/");
+                } else if (payload.status == 401){
+                    ApoToaster.show({message: "Login information incorrect", intent: Intent.DANGER})
                 }
             }.bind(this))
     }

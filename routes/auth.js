@@ -2,6 +2,7 @@
  * Created by francois.drouin on 2/14/2017.
  */
 var models = require('../models');
+var express = require("express");
 var router = express.Router();
 
 router.get("/secure", isLoggedIn, function(req, res){

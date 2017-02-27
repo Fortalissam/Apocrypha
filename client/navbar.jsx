@@ -2,6 +2,8 @@ import * as React from "react"
 import {Link} from "react-router"
 import {connect} from "react-redux"
 import {ActionTypes} from "./redux/constants.js"
+import {ApoToaster} from "./toaster.js"
+import {Intent} from "@blueprintjs/core"
 
 class Navbar extends React.Component{
     constructor(props){
@@ -27,7 +29,8 @@ class Navbar extends React.Component{
                 if (payload.status >= 200 && payload.status < 300){
                     console.log(document.cookie);
                     this.props.logoutUser();
-                    window.location.href = '/';
+                    this.context.router.push("/");
+                    ApoToaster.show({message: "Logged out", intent: Intent.WARNING})
                 }
             }.bind(this))
     }
@@ -64,6 +67,10 @@ class Navbar extends React.Component{
         );
     }
 }
+
+Navbar.contextTypes = {
+    router: React.PropTypes.object
+};
 
 const MapStateToProps = function(state){
     return {

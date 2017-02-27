@@ -52,11 +52,11 @@ class Signup extends React.Component {
                     </label>
                     <label className="pt-label">
                         Password
-                        <input name="password" className="pt-input" type="text" value={this.state.password} onChange={this.handleChange}/>
+                        <input name="password" className="pt-input" type="password" value={this.state.password} onChange={this.handleChange}/>
                     </label>
                     <label className="pt-label">
                         Password confirmation
-                        <input name="passwordConfirmation" className="pt-input" type="text" value={this.state.passwordConfirmation} onChange={this.handleChange}/>
+                        <input name="passwordConfirmation" className="pt-input" type="password" value={this.state.passwordConfirmation} onChange={this.handleChange}/>
                     </label>
                     <button type="submit" className="pt-button pt-intent-primary">Submit</button>
                 </form>
