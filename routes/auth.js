@@ -24,9 +24,16 @@ router.post("/signup", function(req, res){
       password: req.body.password
     };
 
-    models.Users.create(tocreate).then(function(payload){
-        res.sendStatus(200)
-    })
+    models.Users.count({where: {username: tocreate.username}}).then(function(count){
+        if (count == 0){
+            models.Users.create(tocreate).then(function(payload){
+                res.sendStatus(200);
+            })
+        }
+        else{
+            res.sendStatus(403);
+        }
+    });
 });
 
 // route middleware to make sure a user is logged in

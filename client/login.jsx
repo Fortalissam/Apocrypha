@@ -37,6 +37,8 @@ class Login extends React.Component{
                     this.context.router.push("/");
                 } else if (payload.status == 401){
                     ApoToaster.show({message: "Login information incorrect", intent: Intent.DANGER})
+                } else{
+                    ApoToaster.show({message: "An error occured. Please contact development team", intent: Intent.DANGER})
                 }
             }.bind(this))
     }
