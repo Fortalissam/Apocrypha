@@ -3,6 +3,7 @@
  */
 import {combineReducers} from 'redux';
 import {ActionTypes} from "./constants.js"
+import {REHYDRATE} from "redux-persist/constants"
 
 const INCREMENT = 'increment';
 
@@ -46,6 +47,9 @@ function settingsReducer(settings, action){
     switch (action.type){
         case ActionTypes.settings.TOGGLE_THEME:{
             return Object.assign({}, settings, {dark: !settings.dark})
+        }
+        case REHYDRATE: {
+            return Object.assign({}, settings, action.payload.settings)
         }
         default:
             return settings;

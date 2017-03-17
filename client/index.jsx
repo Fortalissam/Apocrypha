@@ -9,17 +9,24 @@ require("whatwg-fetch");
 import {Route, Router, browserHistory} from "react-router"
 import Login from './login.jsx'
 import {Provider} from 'react-redux'
-import store from "./redux"
-import {compose, createStore} from 'redux'
-import persistState from 'redux-localstorage'
+import reducers from "./redux"
+import {compose, createStore, applyMiddleware} from 'redux'
+import {persistStore, autoRehydrate} from 'redux-persist'
 import Signup from "./signup.jsx"
 import Layout from "./layout.jsx"
 
-const enhancer = compose(
-    persistState()
+const store = createStore(
+    reducers,
+    undefined,
+    compose(
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+        applyMiddleware(),
+        autoRehydrate({log: true})
+    )
+
 );
 
-const finalStore = createStore(store,/*,enhancer*/ window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+persistStore(store);
 
 class App extends React.Component {
     constructor(props) {
@@ -28,7 +35,7 @@ class App extends React.Component {
 
     render(){
         return (
-            <Provider  store={finalStore}>
+            <Provider  store={store}>
                 <Router history={browserHistory}>
                     <Route path="/" component={Layout}>
                         <Route path="/login" component={Login}/>
