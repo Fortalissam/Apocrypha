@@ -6,7 +6,7 @@ require("../node_modules/@blueprintjs/core/dist/blueprint.css");
 var Gauges = require("./gauges.jsx");
 require("promise-polyfill");
 require("whatwg-fetch");
-import {Route, Router, browserHistory} from "react-router"
+import {Route, IndexRoute, Router, browserHistory} from "react-router"
 import Login from './login.jsx'
 import {Provider} from 'react-redux'
 import reducers from "./redux"
@@ -14,6 +14,7 @@ import {compose, createStore, applyMiddleware} from 'redux'
 import {persistStore, autoRehydrate} from 'redux-persist'
 import Signup from "./signup.jsx"
 import Layout from "./layout.jsx"
+import Dashboard from "./dashboard.jsx"
 
 const store = createStore(
     reducers,
@@ -38,6 +39,7 @@ class App extends React.Component {
             <Provider  store={store}>
                 <Router history={browserHistory}>
                     <Route path="/" component={Layout}>
+                        <IndexRoute component={Dashboard}/>
                         <Route path="/login" component={Login}/>
                         <Route path="/gauges" component={Gauges}/>
                         <Route path="/signup" component={Signup}/>

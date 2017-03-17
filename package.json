@@ -50,6 +50,7 @@
     "redux-localstorage": "^0.4.1",
     "redux-persist": "^4.4.2",
     "sequelize": "^3.30.2",
+    "serve-favicon": "^2.4.1",
     "source-map-loader": "^0.1.6",
     "sqlite3": "^3.1.8",
     "style-loader": "^0.13.1",

@@ -8,12 +8,15 @@ var session = require("express-session");
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var models = require("./models");
+var favicon = require("serve-favicon");
+var path = require("path");
 
 var app = express();
 
 app.set("view engine", "ejs");
 
 app.use('/static', express.static('public'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser()); // get information from html forms
 app.use(morgan("dev"));
