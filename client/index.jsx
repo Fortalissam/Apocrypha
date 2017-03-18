@@ -20,14 +20,16 @@ const store = createStore(
     reducers,
     undefined,
     compose(
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
         applyMiddleware(),
-        autoRehydrate({log: true})
+        autoRehydrate()
     )
 
 );
 
-persistStore(store);
+persistStore(store).purge();
+
+// const store = createStore(reducers);
 
 class App extends React.Component {
     constructor(props) {
