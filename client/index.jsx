@@ -1,6 +1,5 @@
 var React = require("react");
 var reactDom = require("react-dom");
-import {Button, Intent, } from "@blueprintjs/core";
 
 require("../node_modules/@blueprintjs/core/dist/blueprint.css");
 var Gauges = require("./gauges.jsx");
@@ -12,6 +11,7 @@ import {Provider} from 'react-redux'
 import reducers from "./redux"
 import {compose, createStore, applyMiddleware} from 'redux'
 import {persistStore, autoRehydrate} from 'redux-persist'
+import {composeWithDevTools} from "redux-devtools-extension"
 import Signup from "./signup.jsx"
 import Layout from "./layout.jsx"
 import Dashboard from "./dashboard.jsx"
@@ -19,17 +19,14 @@ import Dashboard from "./dashboard.jsx"
 const store = createStore(
     reducers,
     undefined,
-    compose(
-        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    composeWithDevTools(
         applyMiddleware(),
         autoRehydrate()
     )
 
 );
 
-persistStore(store).purge();
-
-// const store = createStore(reducers);
+persistStore(store);
 
 class App extends React.Component {
     constructor(props) {
