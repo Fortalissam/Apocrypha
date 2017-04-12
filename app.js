@@ -10,6 +10,12 @@ var bodyParser   = require('body-parser');
 var models = require("./models");
 var favicon = require("serve-favicon");
 var path = require("path");
+var program = require("commander");
+
+program
+    .version("0.0.1")
+    .option("-p --port <port>", "Set port on which the site is reachable")
+    .parse(process.argv);
 
 var app = express();
 
@@ -35,5 +41,8 @@ app.use('/', require("./routes/index")(passport));
 
 
 models.sequelize.sync().then(function(){
-    app.listen(8081);
+    var portNumber = 0;
+    program.port ? portNumber = program.port : portNumber = 8081;
+    console.log("App now listening on port " + portNumber)
+    app.listen(portNumber);
 });
