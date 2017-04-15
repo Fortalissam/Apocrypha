@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import {ActionTypes} from "./redux/constants.js"
 import {ApoToaster} from "./toaster.js"
 import {Intent} from "@blueprintjs/core"
