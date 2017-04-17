@@ -33,8 +33,8 @@ class Login extends React.Component{
             .then(function(payload){
                 if (payload.status >= 200 && payload.status < 300){
                     this.props.toggleLogin();
-                    ApoToaster.show({message: "Logged in!", intent: Intent.SUCCESS})
-                    this.context.router.push("/");
+                    ApoToaster.show({message: "Logged in!", intent: Intent.SUCCESS});
+                    this.props.history.push("/");
                 } else if (payload.status == 401){
                     ApoToaster.show({message: "Login information incorrect", intent: Intent.DANGER})
                 } else{

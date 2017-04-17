@@ -29,7 +29,7 @@ class Navbar extends React.Component{
                 if (payload.status >= 200 && payload.status < 300){
                     console.log(document.cookie);
                     this.props.logoutUser();
-                    this.context.router.push("/");
+                    this.props.history.push("/");
                     ApoToaster.show({message: "Logged out", intent: Intent.WARNING})
                 }
             }.bind(this))

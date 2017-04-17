@@ -15,6 +15,7 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import Signup from "./signup.jsx"
 import Layout from "./layout.jsx"
 import Dashboard from "./dashboard.jsx"
+import {createBrowserHistory} from "history"
 
 const store = createStore(
     reducers,
@@ -26,6 +27,9 @@ const store = createStore(
 
 );
 
+const history = createBrowserHistory();
+const location = history.location;
+
 persistStore(store);
 
 class App extends React.Component {
@@ -34,21 +38,18 @@ class App extends React.Component {
     }
 
     render(){
-        const layout = withRouter(Layout);
-
         return (
             <Provider  store={store}>
                 <Router>
                     <Route render={(props)=> {
                         return(
-                            <Layout>
+                            <Layout history={props.history}>
                                 <Route exact path="/" component={Dashboard}/>
                                 <Route path="/login" component={Login}/>
                                 <Route path="/gauges" component={Gauges}/>
                                 <Route path="/signup" component={Signup}/>
                             </Layout>
                         )
-
                     }}/>
                 </Router>
             </Provider>
