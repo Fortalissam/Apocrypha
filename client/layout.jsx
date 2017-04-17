@@ -16,7 +16,7 @@ class Layout extends React.Component{
 
         return(
             <div className={this.props.dark?"pt-dark":""}>
-                <Navbar />
+                <Navbar history={this.props.history} />
                 <div className="contentPadding">
                     {this.props.children}
                 </div>

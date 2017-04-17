@@ -1,5 +1,5 @@
 import * as React from "react"
-import {Link} from "react-router"
+import {Link} from "react-router-dom"
 import {connect} from "react-redux"
 import {ActionTypes} from "./redux/constants.js"
 import {ApoToaster} from "./toaster.js"
@@ -29,7 +29,7 @@ class Navbar extends React.Component{
                 if (payload.status >= 200 && payload.status < 300){
                     console.log(document.cookie);
                     this.props.logoutUser();
-                    this.context.router.push("/");
+                    this.props.history.push("/");
                     ApoToaster.show({message: "Logged out", intent: Intent.WARNING})
                 }
             }.bind(this))
@@ -54,7 +54,7 @@ class Navbar extends React.Component{
         return(
             <nav id="mainNavbar" className="pt-navbar">
                 <div className="pt-navbar-group pt-align-left">
-                    <Link to="/"><div className="pt-navbar-heading">Apocrypha</div></Link>
+                    <Link to="/"><p className="pt-navbar-heading">Apocrypha</p></Link>
                 </div>
                 <div className="pt-navbar-group pt-align-right">
                     <Link to="/gauges"><button className="pt-button pt-minimal">Gauges</button></Link>

@@ -43,7 +43,7 @@ class Signup extends React.Component {
                         })
                         .then(function(payload){
                             this.props.toggleLogin();
-                            this.context.router.push("/");
+                            this.props.history.push("/");
                             ApoToaster.show({message: "Successfully signed up!", intent: Intent.SUCCESS})
                         }.bind(this))
                 }

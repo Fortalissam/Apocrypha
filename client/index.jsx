@@ -5,7 +5,7 @@ require("../node_modules/@blueprintjs/core/dist/blueprint.css");
 var Gauges = require("./gauges.jsx");
 require("promise-polyfill");
 require("whatwg-fetch");
-import {Route, IndexRoute, Router, browserHistory} from "react-router"
+import {Route, BrowserRouter as Router, withRouter} from "react-router-dom"
 import Login from './login.jsx'
 import {Provider} from 'react-redux'
 import reducers from "./redux"
@@ -15,6 +15,7 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import Signup from "./signup.jsx"
 import Layout from "./layout.jsx"
 import Dashboard from "./dashboard.jsx"
+import {createBrowserHistory} from "history"
 
 const store = createStore(
     reducers,
@@ -26,6 +27,9 @@ const store = createStore(
 
 );
 
+const history = createBrowserHistory();
+const location = history.location;
+
 persistStore(store);
 
 class App extends React.Component {
@@ -36,13 +40,17 @@ class App extends React.Component {
     render(){
         return (
             <Provider  store={store}>
-                <Router history={browserHistory}>
-                    <Route path="/" component={Layout}>
-                        <IndexRoute component={Dashboard}/>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/gauges" component={Gauges}/>
-                        <Route path="/signup" component={Signup}/>
-                    </Route>
+                <Router>
+                    <Route render={(props)=> {
+                        return(
+                            <Layout history={props.history}>
+                                <Route exact path="/" component={Dashboard}/>
+                                <Route path="/login" component={Login}/>
+                                <Route path="/gauges" component={Gauges}/>
+                                <Route path="/signup" component={Signup}/>
+                            </Layout>
+                        )
+                    }}/>
                 </Router>
             </Provider>
         )
