@@ -5,7 +5,7 @@ require("../node_modules/@blueprintjs/core/dist/blueprint.css");
 var Gauges = require("./gauges.jsx");
 require("promise-polyfill");
 require("whatwg-fetch");
-import {Route, BrowserRouter as Router} from "react-router-dom"
+import {Route, BrowserRouter as Router, withRouter} from "react-router-dom"
 import Login from './login.jsx'
 import {Provider} from 'react-redux'
 import reducers from "./redux"
@@ -34,15 +34,22 @@ class App extends React.Component {
     }
 
     render(){
+        const layout = withRouter(Layout);
+
         return (
             <Provider  store={store}>
                 <Router>
-                    <Layout>
-                        <Route exact path="/" component={Dashboard}/>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/gauges" component={Gauges}/>
-                        <Route path="/signup" component={Signup}/>
-                    </Layout>
+                    <Route render={(props)=> {
+                        return(
+                            <Layout>
+                                <Route exact path="/" component={Dashboard}/>
+                                <Route path="/login" component={Login}/>
+                                <Route path="/gauges" component={Gauges}/>
+                                <Route path="/signup" component={Signup}/>
+                            </Layout>
+                        )
+
+                    }}/>
                 </Router>
             </Provider>
         )
