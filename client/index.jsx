@@ -2,19 +2,19 @@ var React = require("react");
 var reactDom = require("react-dom");
 
 require("../node_modules/@blueprintjs/core/dist/blueprint.css");
-var Gauges = require("./gauges.jsx");
+var Gauges = require("./routeComponents/gauges.jsx");
 require("promise-polyfill");
 require("whatwg-fetch");
 import {Route, BrowserRouter as Router, withRouter} from "react-router-dom"
-import Login from './login.jsx'
+import Login from './routeComponents/login.jsx'
 import {Provider} from 'react-redux'
 import reducers from "./redux"
 import {compose, createStore, applyMiddleware} from 'redux'
 import {persistStore, autoRehydrate} from 'redux-persist'
 import {composeWithDevTools} from "redux-devtools-extension"
-import Signup from "./signup.jsx"
+import Signup from "./routeComponents/signup.jsx"
 import Layout from "./layout.jsx"
-import Dashboard from "./dashboard.jsx"
+import Dashboard from "./routeComponents/dashboard.jsx"
 import {createBrowserHistory} from "history"
 
 const store = createStore(

@@ -1,8 +1,8 @@
 import React from 'react'
-import {ApoToaster} from "./toaster.js"
+import {ApoToaster} from "../toaster.js"
 import {Intent} from "@blueprintjs/core"
 import {connect} from "react-redux"
-import {ActionTypes} from "./redux/constants.js"
+import {ActionTypes} from "../redux/constants.js"
 
 class Signup extends React.Component {
     constructor (props){

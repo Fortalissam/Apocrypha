@@ -1,5 +1,5 @@
 var React = require("react");
-var Caroussel = require("./caroussel.jsx");
+var Caroussel = require("./../caroussel.jsx");
 import {BarChart, Bar, Legend, XAxis, YAxis, CartesianGrid, ResponsiveContainer} from "recharts";
 
 class GaugesContainer extends React.Component{
