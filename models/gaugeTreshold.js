@@ -1,7 +1,6 @@
 /**
  * Created by chapeau on 28/03/17.
  */
-var gauge = require("./gauge.js");
 
 module.exports = function(sequelize, DataTypes){
     var model = sequelize.define("GaugeTresholds",
@@ -15,9 +14,16 @@ module.exports = function(sequelize, DataTypes){
             value: {
                 type: DataTypes.INTEGER
             }
+        },
+        {
+            classMethods: {
+                associate: function(models){
+                    model.belongsTo(models.Gauges);
+                }
+            }
         });
 
-    model.belongsTo(gauge(sequelize, DataTypes));
+
 
     return model;
 };

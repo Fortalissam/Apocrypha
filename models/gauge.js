@@ -7,6 +7,14 @@ module.exports = function(sequelize, DataTypes){
             name: {
                 type: DataTypes.STRING
             }
+        },
+        {
+            classMethods: {
+                associate: function(models){
+                    model.hasMany(models.GaugeHistoryElements);
+                    model.hasMany(models.GaugeTresholds)
+                }
+            }
         });
 
     return model;

@@ -1,8 +1,6 @@
 /**
  * Created by chapeau on 24/03/17.
  */
-var gauges = require("./gauge.js");
-
 module.exports = function(sequelize, DataTypes){
     var GaugeHistoryElement = sequelize.define("GaugeHistoryElements",
         {
@@ -12,9 +10,15 @@ module.exports = function(sequelize, DataTypes){
             reason: {
                 type: DataTypes.STRING
             }
+        },
+        {
+            classMethods: {
+                associate: function(models){
+                    GaugeHistoryElement.belongsTo(models.Gauges);
+                    GaugeHistoryElement.belongsTo(models.Users);
+                }
+            }
         });
-
-    GaugeHistoryElement.belongsTo(gauges(sequelize, DataTypes));
 
     return GaugeHistoryElement;
 };
