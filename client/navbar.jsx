@@ -68,10 +68,6 @@ class Navbar extends React.Component{
     }
 }
 
-Navbar.contextTypes = {
-    router: React.PropTypes.object
-};
-
 const MapStateToProps = function(state){
     return {
         loggedIn : state.auth.loggedIn,

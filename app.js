@@ -43,6 +43,6 @@ app.use('/', require("./routes/index")(passport));
 models.sequelize.sync().then(function(){
     var portNumber = 0;
     program.port ? portNumber = program.port : portNumber = 8081;
-    console.log("App now listening on port " + portNumber)
+    console.log("App now listening on http://localhost:" + portNumber)
     app.listen(portNumber);
 });
