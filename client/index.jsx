@@ -2,11 +2,10 @@ var React = require("react");
 var reactDom = require("react-dom");
 
 require("../node_modules/@blueprintjs/core/dist/blueprint.css");
-var Gauges = require("./routeComponents/gauges.jsx");
 require("promise-polyfill");
 require("whatwg-fetch");
 
-import Gauges from "./gauges.jsx"
+import Gauges from "./routeComponents/gauges.jsx"
 import {Route, BrowserRouter as Router, withRouter} from "react-router-dom"
 import Login from './routeComponents/login.jsx'
 import {Provider} from 'react-redux'
